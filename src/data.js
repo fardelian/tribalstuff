@@ -81,7 +81,7 @@ const getFile = async (server, file) => {
 
     cache[server][file] = {
       date: Date.now(),
-      txt: decodeURI(fs.readFileSync(dirname(`${server}/${file}.txt`)).toString()).split('\n').map(line => line.split(',')),
+      txt: decodeURI(fs.readFileSync(dirname(`${server}/${file}.txt`)).toString()).toLowerCase().split('\n').map(line => line.split(',')),
     }
   }
 

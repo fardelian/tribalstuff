@@ -23,13 +23,15 @@ app.get('/fakes/random', function (req, res) {
       res.send(`Missing server`)
     }
 
-    const fixedTribes = tribes.split(' ').map(tribe => tribe.trim()).filter(Boolean)
-    const fixedPlayers = players.split(' ').map(player => player.trim()).filter(Boolean)
-    const fixedCoords = coords.split(' ').map(coord => coord.trim()).filter(Boolean)
+    const fixedTribes = tribes.toLowerCase().split(' ').map(tribe => tribe.trim()).filter(Boolean)
+    const fixedPlayers = players.toLowerCase().split(' ').map(player => player.trim()).filter(Boolean)
+    const fixedCoords = coords.toLowerCase().split(' ').map(coord => coord.trim()).filter(Boolean)
 
     fakes.getRandomCoord(server, fixedTribes, fixedPlayers, fixedCoords)
       .then(data => {
-        if (!data) res.end('alert("error!")')
+        if (!data) {
+          return res.end('alert("error!")')
+        }
         const [x, y] = data.split('|')
         res.send(`
 if ($('#units_entry_all_spy').text().replace(/[^\\d]/g,'')>0) $('#unit_input_spy').val(1);
