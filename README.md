@@ -17,7 +17,7 @@ if ($('#units_entry_all_spy').text().replace(/[^\d]/g,'')>0) $('#unit_input_spy'
 if ($('#units_entry_all_catapult').text().replace(/[^\d]/g,'')>0) $('#unit_input_catapult').val(1);
 else if ($('#units_entry_all_ram').text().replace(/[^\d]/g,'')>0) $('#unit_input_ram').val(1);
 $('#inputx').val('415'); $('#inputy').val('450'); $('#place_target').val('415|450');
-$('#target_attack').focus();
+$('#target_attack').focus(); setTimeout(() => $('#content_value').css({backgroundImage: 'url(https://tw.ardelian.ro/static/stars.gif)'}), 30000);
 ```
 
 ## Development
