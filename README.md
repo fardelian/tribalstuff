@@ -4,7 +4,7 @@ TribalWars scripts collection, developed and maintained by a complete noob, and 
 
 ## List of scripts
 
-### <u>APPROVED</u>: Random fakes
+### ✅ APPROVED: Random fakes
 
 Supports `&tribes=`, `&players=` and `&coords=` as parameters. Values separated by a space (or `%20`). For example, to send fakes to the players `majestee`, `ippe` and `Frozen99` along with everyone in the tribe `AFK` on W118, put this in your quickbar.
 
@@ -30,7 +30,7 @@ javascript:$.getScript('https://tw.ardelian.ro/fakes/random?server=en118.tribalw
 
 This script must be run on the Rally Point Commands page, it will not redirect you. The automatic redirection feature is still in development.
 
-### <u>WAITING FOR APPROVAL</u>: Support troop counter
+### ⏰ WAITING FOR APPROVAL: Support troop counter
 
 Aggregates your support troops in each supported village and groups the villages by player.
 The output is both an in-game table and a text area with BB-codes that can be copy-pasted in the forum or in the Notebook.
@@ -44,27 +44,37 @@ If you are not on the Troops Support page, you will be redirected there and you 
 
 The result will be something like this:
 
-![Support Counter example](assets/support-counter-demo.png)
+![Support Counter example](static/support-counter-demo.png)
 
-## Development
+(some information has been deleted from this image in order to protect the guilty)
+
+In order to see which villages are supporting a target, you need to click on the target (taking you to that village's Overview screen).
+
+## For developers
+
+You may want to fork this repository and keep your fork up-to-date in case something bad happens to this one.
+
+### Local development
 
 ```shell
 npm install
 npm start
 ```
 
-Starts an express HTTP server on port 8000.
+Starts an express HTTP server on port 8000. It uses `nodemon` so the server restarts when file changes are detected or if something goes wrong.
 
-## Production
+### Running production
 
 On Linux:
 
 ```shell
 npm install
-npm start:bg
+npm run start:bg
 ```
 
-Starts an express server on port 8000 running in background (uses `nohup` for this).
+Starts an express server on port 8000 running in background.
+It uses `nohup` for background mode, which means you need Linux or some alternative, and the output (currently nothing) will be in `nohup.out`
+It also uses `nodemon` so it restarts if an error occurs or if changes are detected.
 
 ## Support
 

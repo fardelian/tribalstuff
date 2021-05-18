@@ -1,9 +1,12 @@
 const express = require('express')
 const fakes = require('./fakes')
 const fs = require('fs')
+const markdown = require('markdown-it')()
+
 const client = {
   fakes: require('../client/fakes'),
   supportCounter: fs.readFileSync(`${__dirname}/../client/support-counter.js`),
+  readme: markdown.render(fs.readFileSync(`${__dirname}/../README.md`).toString()),
 }
 
 const PORT = 8000
@@ -17,7 +20,7 @@ function err (res, e) {
 }
 
 app
-  .get('/fakes/random', function (req, res) {
+  .get('/fakes/random', (req, res) => {
     try {
       const server = (req.query.server || '').trim()
       const tribes = (req.query.tribes || '').toLowerCase().split(' ').map(tribe => tribe.trim()).filter(Boolean)
@@ -42,11 +45,16 @@ app
     }
   })
 
-  .get('/support-counter', function (req, res) {
+  .get('/support-counter', (req, res) => {
     res.header('Content-Type', 'text/javascript')
     res.send(client.supportCounter)
   })
 
-app.use('/static', express.static(`${__dirname}/../static`))
+  .get('/', (req, res) => {
+    res.header('Content-Type', 'text/html')
+    res.send(`<style>body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"}</style>\n${client.readme}`)
+  })
 
-app.listen(PORT, () => console.log(`App is listening on :${PORT}`))
+  .use('/static', express.static(`${__dirname}/../static`))
+
+app.listen(PORT, () => console.log(`App is listening on :${PORT} with PID ${process.pid}`))

@@ -1,6 +1,8 @@
 function fakes (req, res, target) {
   const [x, y] = target.split('|')
   const spy = !('no-spy' in req.query)
+
+  res.header('Content-Type', 'text/javascript')
   res.send(`
 ${spy ? `if ($('#units_entry_all_spy').text().replace(/[^\\d]/g,'')>0) $('#unit_input_spy').val(1);` : ''}
 if ($('#units_entry_all_catapult').text().replace(/[^\\d]/g,'')>0) $('#unit_input_catapult').val(1); else

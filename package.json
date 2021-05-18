@@ -2,16 +2,18 @@
   "name": "tribalstuff",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "server/tribalstuff.js",
   "scripts": {
-    "start": "node server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server/tribalstuff.js",
+    "start:bg": "nohup nodemon server/tribalstuff.js 2>&1 &"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Tribal Wars", "tribalstuff"],
+  "author": "Florin Ardelian <florin@ardelian.ro>",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "markdown-it": "^12.0.6",
+    "nodemon": "^2.0.7"
   }
 }
