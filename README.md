@@ -6,6 +6,8 @@ TribalWars scripts, hosted publicly at `tw.ardelian.ro`.
 
 Supports `&tribes=`, `&players=` and `&coords=` as parameters. Values separated by a space (or `%20`). For example, to send fakes to the players `majestee`, `ippe` and `Frozen99` along with everyone in the tribe `AFK` on W118, put this in your quickbar:
 
+Add the `&no-spy` parameter to skip the scouts and just send rams/cats.
+
 ```javascript
 javascript:$.getScript('https://tw.ardelian.ro/fakes/random?server=en118.tribalwars.net&players=majestee ippe Frozen99&tribes=AFK');
 ```
