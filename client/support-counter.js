@@ -1,4 +1,18 @@
 !(function () {
+  /* Make sure player is on the right page */
+  // https://en118.tribalwars.net/game.php?village=1&screen=overview_villages&mode=units&type=away_detail&filter_villages=1
+  var expect = {
+    screen: 'overview_villages',
+    mode: 'units',
+    type: 'away_detail',
+  }
+  const qs = location.href.split(/[&?]/).slice(1).map(qs => qs.split('='))
+  const locationValid = qs.every(([k, v]) => (k in expect) ? expect[k] === v : true)
+    && Object.keys(expect).every(k => qs.find(([qk, qv]) => (qk === k) && (qv === expect[k])))
+  if (!locationValid) {
+    return location.href = `/game.php?village=${qs.find(([qk]) => qk === 'village')[1]}&${Object.entries(expect).map(([k, v]) => `${k}=${v}`).join('&')}`
+  }
+
   const unit_types = Array.from($('#units_table thead tr:nth-of-type(2) th img[src*="unit_"]')).map(x => $(x))
 
   function row_class () {
@@ -63,4 +77,3 @@
     }))
     .prepend(html_output)
 })()
-;
